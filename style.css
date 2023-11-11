@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* background-color: black; */
+     
+}
+body{
+    display: flex;
+    justify-content: center;
+    
+}
+.loginDiv {
+    display: flex;
+    flex-direction: column;
+    width: 400pX;
+    height: 300px;
+    padding: 20px;
+    border: 2px solid #778D45;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 25%;
+    
+    box-shadow: 10px 5px 5px rgba(47, 255, 54, 0.551);
+    gap: 30px;
+  
+    
+}
+.buttonPalyNow {
+    background-color: rgba(47, 255, 54, 0.784);
+    padding: 10px;
+}
+.gameName {
+    color: rgb(47, 255, 54);
+}
+.forgrtPass{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+.inputUserName {
+    padding: 5px;
+}
+.inputPasswrod {
+    padding: 5px;
+}
+.linkPassword {
+    color: rgb(174, 171, 171);
+    text-decoration: none;
+}
+.linkSignUP {
+    color: rgb(47, 255, 54);
+    text-decoration: none;
+
+}
+.mainDivCard {
+    width: 400px;
+    height: 400px;
+    
+}
