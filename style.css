@@ -46,7 +46,7 @@ body {
 .forgrtPass {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-color: transparent;
 }
 .inputUserName {
@@ -79,7 +79,7 @@ body {
   grid-template-columns: auto auto auto auto;
 
   gap: 10px;
-
+  border-radius: 20px;
   border: 2px solid blueviolet;
   justify-content: center;
   align-items: center;
@@ -87,6 +87,14 @@ body {
 .img {
   width: 100px;
   height: 100px;
+  border-radius: 15px;
+  box-shadow: 4px 2px 2px blueviolet;
+}
+.card {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+
 }
 .playerName {
   display: flex;
@@ -95,11 +103,17 @@ body {
   color:rgb(47, 255, 54);
   font-size: 20px;
   background-color: transparent;
-  margin-bottom: 5px
+  margin-bottom: 5px;
+  text-transform: capitalize;
 }
 span {
   color: white;
   background-color: transparent;
   justify-content: center;
   align-items: center;
+}
+.gameName{
+  color: rgb(47, 255, 54);
+  background-color: transparent;
+  justify-content: center;
 }

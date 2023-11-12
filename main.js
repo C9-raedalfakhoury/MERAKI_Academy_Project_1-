@@ -27,9 +27,15 @@ shuffleArray(images);
 const loginDiv = document.createElement("div");
 // add class for div
 loginDiv.className = "loginDiv";
+// create heading for gameName
+const gameName = document.createElement("h1");
+// add class for gameName
+gameName.className = "gameName";
+// add inner text for signIn
+gameName.innerText = `MEMORY GAME CARD`;
 // create heading for signIn
-const signIn = document.createElement("h1");
-// add class for heading
+const signIn = document.createElement("h2");
+// add class for signIn
 signIn.className = "signIn";
 // add inner text for signIn
 signIn.innerText = ` SIGN IN `;
@@ -69,6 +75,7 @@ buttonPalyNow.className = "buttonPalyNow";
 // add inner text for button
 buttonPalyNow.innerText = "PALY NOW";
 loginDiv.append(
+  gameName,
   signIn,
   inputUserName,
   inputPasswrod,
@@ -93,13 +100,15 @@ layoutPage.style.display = "none";
 const playerName = document.createElement("div");
 
 playerName.className = "playerName";
+let count = 1;
+let id;
 const renderImage = () => {
   images.forEach((image, index) => {
     const card = document.createElement("div");
     card.className = "card";
     const img = document.createElement("img");
     img.className = "img";
-    img.src = image.alt;
+    img.src = image.src;
     img.id = image.id;
     img.setAttribute("index", index);
     card.append(img);
@@ -108,15 +117,29 @@ const renderImage = () => {
     layoutPage.append(playerName, mainDivCard);
 
     img.addEventListener("click", (e) => {
-      console.log(e.target.id);
+      if (count === 1) {
+        id = e.target.id;
+      }
+      if (count === 2) {
+        img.src = image.src;
+        if (id === e.target.id) {
+          console.log("yes");
+          console.log(`ID is ${id} TARGET ${e.target.id}`);
+          // img.src = image.src;
+        } else {
+          console.log("no");
+          console.log(`ID is ${id} TARGET ${e.target.id}`);
+        }
+        count = 0;
+      }
+      count++;
     });
   });
 };
-const allCard = document.getElementsByClassName(".img");
-console.log(allCard);
+
 buttonPalyNow.addEventListener("click", () => {
   renderImage();
-  playerName.innerText = `Hello : ${inputUserName.value}`;
+  playerName.innerText = `Player Name : ${inputUserName.value}`;
 
   loginDiv.style.display = "none";
   mainDivCard.style.display = "grid";
