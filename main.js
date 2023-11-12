@@ -1,28 +1,29 @@
-const images = [
-  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.png" },
-  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.png" },
-  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.png" },
-  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.png" },
-  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.png" },
-  { id: 6, src: "./image/react.jpg", alt: "./front/front.png" },
-  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.png" },
-  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.png" },
-  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.png" },
-  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.png" },
-  { id: 6, src: "./image/react.jpg", alt: "./front/front.png" },
-  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.png" },
-  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.png" },
-  { id: 7, src: "./image/redux.jpg", alt: "./front/front.png" },
-  { id: 7, src: "./image/redux.jpg", alt: "./front/front.png" },
-  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.png" },
+const imageArray = [
+  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.jpg" },
+  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.jpg" },
+  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.jpg" },
+  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.jpg" },
+  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.jpg" },
+  { id: 6, src: "./image/react.jpg", alt: "./front/front.jpg" },
+  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.jpg" },
+  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.jpg" },
+  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.jpg" },
+  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.jpg" },
+  { id: 6, src: "./image/react.jpg", alt: "./front/front.jpg" },
+  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.jpg" },
+  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.jpg" },
+  { id: 7, src: "./image/redux.jpg", alt: "./front/front.jpg" },
+  { id: 7, src: "./image/redux.jpg", alt: "./front/front.jpg" },
+  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.jpg" },
 ];
-function shuffleArray(images) {
-  for (let i = images.length - 1; i > 0; i--) {
+function shuffleArray(imageArray) {
+  for (let i = imageArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [images[i], images[j]] = [images[j], images[i]];
+    [imageArray[i], imageArray[j]] = [imageArray[j], imageArray[i]];
   }
 }
-shuffleArray(images);
+shuffleArray(imageArray);
+
 // create div for login page
 const loginDiv = document.createElement("div");
 // add class for div
@@ -43,13 +44,14 @@ signIn.innerText = ` SIGN IN `;
 const inputUserName = document.createElement("input");
 // add class for input user name
 inputUserName.className = "inputUserName";
-
+inputUserName.id = 'userName'
 // add placeholder for input user name
 inputUserName.placeholder = "Username";
 // create input field for password
 const inputPasswrod = document.createElement("input");
 // add placeholder for input password
 inputPasswrod.placeholder = "Password";
+inputPasswrod.type = "password";
 // add class name for input password
 inputPasswrod.className = "inputPasswrod";
 // create div for forget password and sign in
@@ -101,48 +103,40 @@ const playerName = document.createElement("div");
 
 playerName.className = "playerName";
 let count = 1;
-let id;
-
-const renderImage = () => {
-  images.forEach((image, index) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    const img = document.createElement("img");
-    img.className = "img";
-    img.src = image.alt;
-    img.id = image.id;
-
-    const imageId = document.querySelector(".img");
-    card.append(img);
-    mainDivCard.append(card);
+let FirstImageValue;
+let LastIndex;
+let trueSelect = 0; 
+const renderImage = (image) => {
+  imageArray.forEach((x, index) => {
+    const imageCard = document.createElement("img");
+    imageCard.className = "img";
+    imageCard.src = x.alt;
+    imageCard.id = `img${index}`;
+    imageCard.value = x.id;
+    mainDivCard.append(imageCard);
 
     layoutPage.append(playerName, mainDivCard);
 
-    img.addEventListener("click", (e) => {
+    imageCard.addEventListener("click", (e) => {
+      imageCard.src = x.src;
       if (count === 1) {
-        id = e.target.id;
-        img.src = image.src;
-        //  return ;
+        FirstImageValue = e.target.value;
+        firstIndex = index;
       }
       if (count === 2) {
-        img.src = image.src;
-        const firstImage = document.querySelector(`#${id}`);
-
-        const secondImage = document.querySelector(`#${e.target.id}`);
-
-        if (id === e.target.id) {
-          console.log("yes");
-          console.log(`ID is ${id} TARGET ${e.target.id}`);
-
-          console.log(`f : ${firstImage}`);
-
-          console.log(`s : ${secondImage}`);
+        imageCard.src = x.src;
+        e.preventDefault();
+        if (FirstImageValue === e.target.value) {
+          trueSelect++;
+          new Audio("./sound/click.wav").play();
         } else {
-          console.log("no");
-          console.log(`ID is ${id} TARGET ${e.target.id}`);
-          img.src = image.src;
+          new Audio("./sound/wrong.mp3").play();
+          setTimeout(() => {
+            document.querySelector(`#img${index}`).src = x.alt;
+            document.querySelector(`#img${firstIndex}`).src = x.alt;
+          }, "1000");
         }
-        count = 1;
+        count = 0;
       }
       count++;
     });
@@ -150,11 +144,23 @@ const renderImage = () => {
 };
 
 buttonPalyNow.addEventListener("click", (e) => {
-  renderImage();
-  playerName.innerText = `Player Name : ${inputUserName.value}`;
+  if (inputUserName.value&&inputPasswrod.value) {
+    renderImage(imageArray);
 
+  playerName.innerText = `Player Name : ${inputUserName.value}`;
   loginDiv.style.display = "none";
   mainDivCard.style.display = "grid";
   layoutPage.style.display = "grid";
+  }
+  else{
+    inputUserName.id=inputUserName
+    inputUserName.id="userNamef"
+inputUserName.placeholder='please fill the input'
+ 
+loginDiv.style.display = "flex";
+  }
+   
+  
 });
+
 document.body.append(loginDiv, layoutPage);
