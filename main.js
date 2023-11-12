@@ -106,11 +106,13 @@ let count = 1;
 let FirstImageValue;
 let LastIndex;
 let trueSelect = 0; 
-const renderImage = (image) => {
+const renderImage = () => {
+
+
   imageArray.forEach((x, index) => {
     const imageCard = document.createElement("img");
     imageCard.className = "img";
-    imageCard.src = x.alt;
+    imageCard.src = x.src;
     imageCard.id = `img${index}`;
     imageCard.value = x.id;
     mainDivCard.append(imageCard);
@@ -141,10 +143,16 @@ const renderImage = (image) => {
       count++;
     });
   });
+  setTimeout(() => {
+    document.querySelectorAll(".img").forEach((img)=>{
+      img.src="./front/front.jpg"
+    })
+  }, "4000");
 };
 
 buttonPalyNow.addEventListener("click", (e) => {
   if (inputUserName.value&&inputPasswrod.value) {
+    
     renderImage(imageArray);
 
   playerName.innerText = `Player Name : ${inputUserName.value}`;
