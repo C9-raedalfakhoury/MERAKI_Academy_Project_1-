@@ -131,3 +131,30 @@ span {
   opacity: 0.8;
   text-transform: uppercase;
 }
+#resultScreen{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  padding: 20px;
+  border: 2px solid #778d45;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 25%;
+  box-shadow: 6px 3px 3px rgba(47, 255, 54, 0.551);
+  gap: 30px;
+   
+}
+#replayButton {
+  background-color: transparent;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color:  rgba(47, 255, 54, 0.551);
+
+}
+#resultText {
+  color:  rgb(47, 255, 54);
+  background-color: transparent;
+}

@@ -84,6 +84,7 @@ loginDiv.append(
   forgrtPassDiv,
   buttonPalyNow
 );
+loginDiv.style.display = "flex"; //!000000000000000000000
 buttonPalyNow.addEventListener("click", () => {
   loginDiv.style.display = "none";
   mainDivCard.style.display = "show";
@@ -101,11 +102,23 @@ layoutPage.style.display = "none";
 
 const playerName = document.createElement("div");
 //!-----------create result page -------------------------
-// create div for result screen 
-const resultScreen = document.createElement('div');
-resultScreen.id = 'resultScreen';
+// create div for result screen
+const resultScreen = document.createElement("div");
+resultScreen.id = "resultScreen";
+// create heading for result
+const resultText = document.createElement("h1");
+resultText.id = "resultText";
+resultText.innerText = "GAME OVER";
+// create button replay again
+const replayButton = document.createElement("button");
+replayButton.id = "replayButton";
+replayButton.innerText = "REPLAY AGAIN";
+resultScreen.style.display = "none"; 
 
+resultScreen.append(resultText, replayButton);
+document.body.append(resultScreen);
 //!----------------------------create counter-----------------------
+
 let minutes = 0;
 let seconds = 0;
 const counter = document.createElement("h3");
@@ -120,8 +133,11 @@ const timer = () => {
       seconds = 0;
       minutes++;
     }
-    if (minutes === 3) {
+    if (minutes === 2) {
       clearInterval(timeOver);
+      resultScreen.style.display = "flex";
+      layoutPage.style.display = "none";
+      loginDiv.style.display = "none";
     }
   }, 1000);
 };
@@ -132,7 +148,15 @@ let count = 1;
 let FirstImageValue;
 let LastIndex;
 let trueSelect = 0;
-
+const finishGame = () => {
+  if (trueSelect === 8) {
+    loginDiv.style.display = "none";
+    layoutPage.style.display = "none";
+    resultScreen.style.display = "flex";
+    resultText.innerText = "CONGRATULATION";
+  }
+};
+document.body.addEventListener("click", finishGame);
 const renderImage = () => {
   timer();
   imageArray.forEach((x, index) => {
@@ -147,15 +171,17 @@ const renderImage = () => {
 
     imageCard.addEventListener("click", (e) => {
       imageCard.src = x.src;
-
-      if (count === 1) {
+      
+        if (count === 1) {
         FirstImageValue = e.target.value;
         firstIndex = index;
       }
       if (count === 2) {
         imageCard.src = x.src;
-
+         
         if (FirstImageValue === e.target.value) {
+          trueSelect++;
+          
           new Audio("./sound/click.wav").play();
         } else {
           new Audio("./sound/wrong.mp3").play();
@@ -167,6 +193,9 @@ const renderImage = () => {
         count = 0;
       }
       count++;
+      
+      
+      
     });
   });
   setTimeout(() => {
@@ -176,9 +205,15 @@ const renderImage = () => {
   }, "5000");
 };
 
+replayButton.addEventListener("click", () => {
+  layoutPage.style.display='grid'
+  resultScreen.style.display = "none";
+  console.log("ok");
+  renderImage();
+});
 buttonPalyNow.addEventListener("click", (e) => {
   if (inputUserName.value && inputPasswrod.value) {
-    renderImage(imageArray);
+    renderImage();
 
     playerName.innerText = `Player Name : ${inputUserName.value}`;
     loginDiv.style.display = "none";
