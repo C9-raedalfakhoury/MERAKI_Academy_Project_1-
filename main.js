@@ -44,7 +44,7 @@ signIn.innerText = ` SIGN IN `;
 const inputUserName = document.createElement("input");
 // add class for input user name
 inputUserName.className = "inputUserName";
-inputUserName.id = 'userName'
+inputUserName.id = "userName";
 // add placeholder for input user name
 inputUserName.placeholder = "Username";
 // create input field for password
@@ -100,15 +100,41 @@ layoutPage.className = "layoutPage";
 layoutPage.style.display = "none";
 
 const playerName = document.createElement("div");
+//!-----------create result page -------------------------
+// create div for result screen 
+const resultScreen = document.createElement('div');
+resultScreen.id = 'resultScreen';
+
+//!----------------------------create counter-----------------------
+let minutes = 0;
+let seconds = 0;
+const counter = document.createElement("h3");
+counter.id = "counter";
+
+const timer = () => {
+  let timeOver = setInterval(() => {
+    seconds++;
+
+    counter.innerText = "0" + minutes + "m" + " : " + seconds + "s";
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
+    }
+    if (minutes === 3) {
+      clearInterval(timeOver);
+    }
+  }, 1000);
+};
 
 playerName.className = "playerName";
+
 let count = 1;
 let FirstImageValue;
 let LastIndex;
-let trueSelect = 0; 
+let trueSelect = 0;
+
 const renderImage = () => {
-
-
+  timer();
   imageArray.forEach((x, index) => {
     const imageCard = document.createElement("img");
     imageCard.className = "img";
@@ -117,26 +143,26 @@ const renderImage = () => {
     imageCard.value = x.id;
     mainDivCard.append(imageCard);
 
-    layoutPage.append(playerName, mainDivCard);
+    layoutPage.append(counter, playerName, mainDivCard);
 
     imageCard.addEventListener("click", (e) => {
       imageCard.src = x.src;
+
       if (count === 1) {
         FirstImageValue = e.target.value;
         firstIndex = index;
       }
       if (count === 2) {
         imageCard.src = x.src;
-        e.preventDefault();
+
         if (FirstImageValue === e.target.value) {
-          trueSelect++;
           new Audio("./sound/click.wav").play();
         } else {
           new Audio("./sound/wrong.mp3").play();
           setTimeout(() => {
             document.querySelector(`#img${index}`).src = x.alt;
             document.querySelector(`#img${firstIndex}`).src = x.alt;
-          }, "1000");
+          }, "700");
         }
         count = 0;
       }
@@ -144,31 +170,28 @@ const renderImage = () => {
     });
   });
   setTimeout(() => {
-    document.querySelectorAll(".img").forEach((img)=>{
-      img.src="./front/front.jpg"
-    })
-  }, "4000");
+    document.querySelectorAll(".img").forEach((img) => {
+      img.src = "./front/front.jpg";
+    });
+  }, "5000");
 };
 
 buttonPalyNow.addEventListener("click", (e) => {
-  if (inputUserName.value&&inputPasswrod.value) {
-    
+  if (inputUserName.value && inputPasswrod.value) {
     renderImage(imageArray);
 
-  playerName.innerText = `Player Name : ${inputUserName.value}`;
-  loginDiv.style.display = "none";
-  mainDivCard.style.display = "grid";
-  layoutPage.style.display = "grid";
+    playerName.innerText = `Player Name : ${inputUserName.value}`;
+    loginDiv.style.display = "none";
+    mainDivCard.style.display = "grid";
+    layoutPage.style.display = "grid";
+  } else {
+    inputUserName.id = inputUserName;
+    inputUserName.id = "userNamef";
+    inputUserName.placeholder = "please fill the input";
+    loginDiv.style.display = "flex";
+    inputPasswrod.id = "passwordPlaceHolder";
+    inputPasswrod.placeholder = "please fill the input";
   }
-  else{
-    inputUserName.id=inputUserName
-    inputUserName.id="userNamef"
-inputUserName.placeholder='please fill the input'
- 
-loginDiv.style.display = "flex";
-  }
-   
-  
 });
 
 document.body.append(loginDiv, layoutPage);

@@ -9,7 +9,7 @@ body {
   justify-content: center;
 }
 .layoutPage {
-  padding: 4%;
+  padding: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,6 +90,7 @@ body {
   height: 100%;
   border-radius: 15px;
   box-shadow: 3px 2px 2px rgba(47, 255, 54, 0.497);
+   
 }
  
 .playerName {
@@ -113,13 +114,20 @@ span {
   background-color: transparent;
   justify-content: center;
 }
-#userName::placeholder {
-  color: rgb(113, 104, 104);
-  opacity: 1;  
- 
-}
+
 #userNamef::placeholder {
   color: red;
-  opacity: 1;  
+  opacity: 0.8;  
  
+}
+
+#counter{
+  color: white;
+  background-color: transparent;
+  
+}
+#passwordPlaceHolder::placeholder{
+  color: red;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
