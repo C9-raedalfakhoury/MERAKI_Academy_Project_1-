@@ -164,7 +164,7 @@ loginDiv.append(
   forgrtPassDiv,
   buttonPalyNow
 );
-loginDiv.style.display = "flex";  
+loginDiv.style.display = "flex";
 buttonPalyNow.addEventListener("click", () => {
   loginDiv.style.display = "none";
   mainDivCard.style.display = "grid";
@@ -179,7 +179,6 @@ mainDivCard.style.display = "none";
 const layoutPage = document.createElement("div");
 layoutPage.className = "layoutPage";
 layoutPage.style.display = "none";
-
 
 //!-----------create result page -------------------------
 // create div for result screen
@@ -213,7 +212,7 @@ const timer = () => {
       seconds = 0;
       minutes++;
     }
-    if (minutes === 20) {
+    if (minutes === 3) {
       clearInterval(timeOver);
       resultScreen.style.display = "flex";
       layoutPage.style.display = "none";
@@ -224,9 +223,9 @@ const timer = () => {
 
 const divNameCounter = document.createElement("div");
 divNameCounter.id = "playerName";
-const innerDivCounter = document.createElement('p')
-innerDivCounter.id = 'innerDivCounter';
-divNameCounter.append(innerDivCounter,counter);
+const innerDivCounter = document.createElement("p");
+innerDivCounter.id = "innerDivCounter";
+divNameCounter.append(innerDivCounter, counter);
 let count = 1;
 let FirstImageValue;
 let LastIndex;
@@ -251,7 +250,7 @@ const renderImage = () => {
     imageCard.status = x.status;
     mainDivCard.append(imageCard);
 
-    layoutPage.append(  divNameCounter, mainDivCard);
+    layoutPage.append(divNameCounter, mainDivCard);
 
     imageCard.addEventListener("click", (e) => {
       imageCard.src = x.src;
@@ -260,32 +259,28 @@ const renderImage = () => {
         FirstImageValue = e.target.value;
         firstIndex = index;
       }
-      if (
-        document.querySelector(`#img${index}`).status === true &&
-        document.querySelector(`#img${firstIndex}`).status === true
-      ) {
-        console.log(e.target.status);
-        if (count === 2) {
-          imageCard.src = x.src;
 
-          if (FirstImageValue === e.target.value) {
-            trueSelect++;
-            console.log(e.target.status);
-            document.querySelector(`#img${index}`).status = true;
+      console.log(e.target.status);
+      if (count === 2) {
+        imageCard.src = x.src;
 
-            document.querySelector(`#img${firstIndex}`).status = true;
-            new Audio("./sound/click.wav").play();
-          } else {
-            new Audio("./sound/wrong.mp3").play();
-            setTimeout(() => {
-              document.querySelector(`#img${index}`).src = x.alt;
-              document.querySelector(`#img${firstIndex}`).src = x.alt;
-            }, "700");
-          }
-          count = 0;
+        if (FirstImageValue === e.target.value) {
+          trueSelect++;
+          console.log(e.target.status);
+          document.querySelector(`#img${index}`).status = true;
+
+          document.querySelector(`#img${firstIndex}`).status = true;
+          new Audio("./sound/click.wav").play();
+        } else {
+          new Audio("./sound/wrong.mp3").play();
+          setTimeout(() => {
+            document.querySelector(`#img${index}`).src = x.alt;
+            document.querySelector(`#img${firstIndex}`).src = x.alt;
+          }, "700");
         }
-        count++;
+        count = 0;
       }
+      count++;
     });
   });
   setTimeout(() => {
