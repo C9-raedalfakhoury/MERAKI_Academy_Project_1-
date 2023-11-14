@@ -1,20 +1,100 @@
 const imageArray = [
-  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.jpg" },
-  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.jpg" },
-  { id: 2, src: "./image/flutter.jpg", alt: "./front/front.jpg" },
-  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.jpg" },
-  { id: 1, src: "./image/firebase.jpg", alt: "./front/front.jpg" },
-  { id: 6, src: "./image/react.jpg", alt: "./front/front.jpg" },
-  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.jpg" },
-  { id: 4, src: "./image/nodejs.jpg", alt: "./front/front.jpg" },
-  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.jpg" },
-  { id: 5, src: "./image/postgress.jpg", alt: "./front/front.jpg" },
-  { id: 6, src: "./image/react.jpg", alt: "./front/front.jpg" },
-  { id: 3, src: "./image/mongoDB.jpg", alt: "./front/front.jpg" },
-  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.jpg" },
-  { id: 7, src: "./image/redux.jpg", alt: "./front/front.jpg" },
-  { id: 7, src: "./image/redux.jpg", alt: "./front/front.jpg" },
-  { id: 8, src: "./image/tailwind.jpg", alt: "./front/front.jpg" },
+  {
+    id: 1,
+    src: "./image/firebase.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 2,
+    src: "./image/flutter.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 2,
+    src: "./image/flutter.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 3,
+    src: "./image/mongoDB.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 1,
+    src: "./image/firebase.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 6,
+    src: "./image/react.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 4,
+    src: "./image/nodejs.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 4,
+    src: "./image/nodejs.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 5,
+    src: "./image/postgress.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 5,
+    src: "./image/postgress.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 6,
+    src: "./image/react.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 3,
+    src: "./image/mongoDB.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 8,
+    src: "./image/tailwind.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 7,
+    src: "./image/redux.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 7,
+    src: "./image/redux.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
+  {
+    id: 8,
+    src: "./image/tailwind.jpg",
+    alt: "./front/front.jpg",
+    status: false,
+  },
 ];
 function shuffleArray(imageArray) {
   for (let i = imageArray.length - 1; i > 0; i--) {
@@ -33,7 +113,7 @@ const gameName = document.createElement("h1");
 // add class for gameName
 gameName.className = "gameName";
 // add inner text for signIn
-gameName.innerText = `MEMORY GAME CARD`;
+gameName.innerText = `MEMORY CARD GAME`;
 // create heading for signIn
 const signIn = document.createElement("h2");
 // add class for signIn
@@ -60,7 +140,7 @@ forgrtPassDiv.className = "forgrtPass";
 // create heading forget password
 const forgetPassText = document.createElement("a");
 forgetPassText.className = "linkPassword";
-forgetPassText.innerText = "Forgot Password";
+forgetPassText.innerText = "Forgot Password?";
 forgetPassText.href = "#";
 // create link for sign in
 const linkSignIn = document.createElement("a");
@@ -84,10 +164,10 @@ loginDiv.append(
   forgrtPassDiv,
   buttonPalyNow
 );
-loginDiv.style.display = "flex"; //!000000000000000000000
+loginDiv.style.display = "flex";  
 buttonPalyNow.addEventListener("click", () => {
   loginDiv.style.display = "none";
-  mainDivCard.style.display = "show";
+  mainDivCard.style.display = "grid";
 });
 //! main screen Layout
 // create main div for all card
@@ -100,7 +180,7 @@ const layoutPage = document.createElement("div");
 layoutPage.className = "layoutPage";
 layoutPage.style.display = "none";
 
-const playerName = document.createElement("div");
+
 //!-----------create result page -------------------------
 // create div for result screen
 const resultScreen = document.createElement("div");
@@ -113,7 +193,7 @@ resultText.innerText = "GAME OVER";
 const replayButton = document.createElement("button");
 replayButton.id = "replayButton";
 replayButton.innerText = "REPLAY AGAIN";
-resultScreen.style.display = "none"; 
+resultScreen.style.display = "none";
 
 resultScreen.append(resultText, replayButton);
 document.body.append(resultScreen);
@@ -133,7 +213,7 @@ const timer = () => {
       seconds = 0;
       minutes++;
     }
-    if (minutes === 2) {
+    if (minutes === 20) {
       clearInterval(timeOver);
       resultScreen.style.display = "flex";
       layoutPage.style.display = "none";
@@ -142,8 +222,11 @@ const timer = () => {
   }, 1000);
 };
 
-playerName.className = "playerName";
-
+const divNameCounter = document.createElement("div");
+divNameCounter.id = "playerName";
+const innerDivCounter = document.createElement('p')
+innerDivCounter.id = 'innerDivCounter';
+divNameCounter.append(innerDivCounter,counter);
 let count = 1;
 let FirstImageValue;
 let LastIndex;
@@ -165,37 +248,44 @@ const renderImage = () => {
     imageCard.src = x.src;
     imageCard.id = `img${index}`;
     imageCard.value = x.id;
+    imageCard.status = x.status;
     mainDivCard.append(imageCard);
 
-    layoutPage.append(counter, playerName, mainDivCard);
+    layoutPage.append(  divNameCounter, mainDivCard);
 
     imageCard.addEventListener("click", (e) => {
       imageCard.src = x.src;
-      
-        if (count === 1) {
+
+      if (count === 1) {
         FirstImageValue = e.target.value;
         firstIndex = index;
       }
-      if (count === 2) {
-        imageCard.src = x.src;
-         
-        if (FirstImageValue === e.target.value) {
-          trueSelect++;
-          
-          new Audio("./sound/click.wav").play();
-        } else {
-          new Audio("./sound/wrong.mp3").play();
-          setTimeout(() => {
-            document.querySelector(`#img${index}`).src = x.alt;
-            document.querySelector(`#img${firstIndex}`).src = x.alt;
-          }, "700");
+      if (
+        document.querySelector(`#img${index}`).status === true &&
+        document.querySelector(`#img${firstIndex}`).status === true
+      ) {
+        console.log(e.target.status);
+        if (count === 2) {
+          imageCard.src = x.src;
+
+          if (FirstImageValue === e.target.value) {
+            trueSelect++;
+            console.log(e.target.status);
+            document.querySelector(`#img${index}`).status = true;
+
+            document.querySelector(`#img${firstIndex}`).status = true;
+            new Audio("./sound/click.wav").play();
+          } else {
+            new Audio("./sound/wrong.mp3").play();
+            setTimeout(() => {
+              document.querySelector(`#img${index}`).src = x.alt;
+              document.querySelector(`#img${firstIndex}`).src = x.alt;
+            }, "700");
+          }
+          count = 0;
         }
-        count = 0;
+        count++;
       }
-      count++;
-      
-      
-      
     });
   });
   setTimeout(() => {
@@ -206,7 +296,7 @@ const renderImage = () => {
 };
 
 replayButton.addEventListener("click", () => {
-  layoutPage.style.display='grid'
+  layoutPage.style.display = "flex";
   resultScreen.style.display = "none";
   console.log("ok");
   renderImage();
@@ -215,10 +305,10 @@ buttonPalyNow.addEventListener("click", (e) => {
   if (inputUserName.value && inputPasswrod.value) {
     renderImage();
 
-    playerName.innerText = `Player Name : ${inputUserName.value}`;
+    innerDivCounter.innerText = `Player Name : ${inputUserName.value}`;
     loginDiv.style.display = "none";
     mainDivCard.style.display = "grid";
-    layoutPage.style.display = "grid";
+    layoutPage.style.display = "flex";
   } else {
     inputUserName.id = inputUserName;
     inputUserName.id = "userNamef";
