@@ -87,7 +87,10 @@ function shuffleArray(imageArray) {
   }
 }
 shuffleArray(imageArray);
-
+const refresh = () => {
+  location.reload();
+};
+// let nameLocal;
 // create div for login page
 const loginDiv = document.createElement("div");
 // add class for div
@@ -95,64 +98,59 @@ loginDiv.className = "loginDiv";
 const logo = document.createElement("img");
 logo.id = "logo";
 logo.src = "./image/logo.webp";
+
 loginDiv.append(logo);
-// create heading for gameName
-// const gameName = document.createElement("h1");
-// add class for gameName
-// gameName.className = "gameName";
-// add inner text for signIn
-// gameName.innerText = `MEMORY CARD GAME`;
-// create heading for signIn
-// const signIn = document.createElement("h2");
-// add class for signIn
-// signIn.className = "signIn";
-// add inner text for signIn
-// signIn.innerText = ` SIGN IN `;
-//create input filed for user name
+
 const inputUserName = document.createElement("input");
 // add class for input user name
 inputUserName.className = "inputUserName";
 inputUserName.id = "userName";
+inputUserName.addEventListener("change", (e) => {
+  // nameLocal = e.target.value;
+});
+// localStorage.setItem("name", nameLocal);
 // add placeholder for input user name
 inputUserName.placeholder = "Username";
-// create input field for password
-//const inputPasswrod = document.createElement("input");
-// add placeholder for input password
-//inputPasswrod.placeholder = "Password";
-// inputPasswrod.type = "password";
-// add class name for input password
-// inputPasswrod.className = "inputPasswrod";
-// create div for forget password and sign in
-// const forgrtPassDiv = document.createElement("div");
-// forgrtPassDiv.className = "forgrtPass";
-// create heading forget password
-// const forgetPassText = document.createElement("a");
-// forgetPassText.className = "linkPassword";
-// forgetPassText.innerText = "Forgot Password?";
-// forgetPassText.href = "#";
-// create link for sign in
-// const linkSignIn = document.createElement("a");
-// linkSignIn.className = "linkSignUP";
-// linkSignIn.innerText = "Sign Up";
-// linkSignIn.href = "#";
 
-// append link and forgot password inside div
-//forgrtPassDiv.append(forgetPassText, linkSignIn);
-// create button to start game
-const welcome_page = document.createElement("div");
-welcome_page.append(loginDiv);
 
 const buttonPalyNow = document.createElement("button");
 // add class name for button play now
 buttonPalyNow.className = "buttonPalyNow";
 // add inner text for button
 buttonPalyNow.innerText = "Play Now";
-loginDiv.append(inputUserName, buttonPalyNow);
+const playRule = document.createElement('a');
+playRule.innerText = 'How To Play?'
+playRule.id = 'playRule'
+playRule.href = '#';
+const goHome = document.createElement('button');
+goHome.id = 'goHome';
+goHome.innerText = 'Home Page';
+goHome.addEventListener('click',refresh)
+const masterRuleDiv = document.createElement('div');
+masterRuleDiv.id = 'masterRuleDiv';
+masterRuleDiv.style.display = 'none'
+playRule.addEventListener('click',()=>{
+  masterRuleDiv.style.display = 'flex'
+  RuleDiv.style.display='flex'
+  loginDiv.style.display = 'none'
+  
+})
+const RuleDiv = document.createElement('div')
+RuleDiv.id = 'RuleDiv';
+RuleDiv.style.display='flex'
+const textRule = document.createElement('p')
+textRule.id = 'textRule';
+textRule.innerText = '# The memory game is a common children\'s game played with a set of cards. The cards have a pictures on one side and each picture appears on two (or sometimes four) cards. The game starts with all the cards face down and players take turns to turn over two cards. If the two cards have the same picture, then they keep the cards, otherwise they turn the cards face down again. The winner is the person with the most cards when all the cards have been taken'
+
+RuleDiv.append(textRule,goHome);
+ 
+loginDiv.append(inputUserName, buttonPalyNow,playRule);
 loginDiv.style.display = "flex";
 buttonPalyNow.addEventListener("click", () => {
   loginDiv.style.display = "none";
   mainDivCard.style.display = "grid";
 });
+masterRuleDiv.append(RuleDiv)
 //! main screen Layout
 // create main div for all card
 const mainDivCard = document.createElement("div");
@@ -275,14 +273,14 @@ const renderImage = () => {
     });
   }, "4000");
 };
-const refresh = () => {
-  location.reload();
-};
-replayButton.addEventListener("click", refresh);
-buttonPalyNow.addEventListener("click", (e) => {
-  if (inputUserName.value) {
-    renderImage();
 
+
+replayButton.addEventListener("click", refresh);
+
+buttonPalyNow.addEventListener("click", (e) => {
+  if (inputUserName.value && typeof inputUserName.value === "string") {
+    renderImage();
+    // document.body.style.pointerEvents = 'none'
     innerDivCounter.innerText = `Player Name : ${inputUserName.value}`;
     loginDiv.style.display = "none";
     mainDivCard.style.display = "grid";
@@ -295,4 +293,4 @@ buttonPalyNow.addEventListener("click", (e) => {
   }
 });
 
-document.body.append(loginDiv, layoutPage);
+document.body.append( loginDiv, layoutPage,masterRuleDiv);
