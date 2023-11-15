@@ -3,97 +3,81 @@ const imageArray = [
     id: 1,
     src: "./image/firebase.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 2,
     src: "./image/flutter.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 2,
     src: "./image/flutter.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 3,
     src: "./image/mongoDB.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 1,
     src: "./image/firebase.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 6,
     src: "./image/react.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 4,
     src: "./image/nodejs.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 4,
     src: "./image/nodejs.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 5,
     src: "./image/postgress.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 5,
     src: "./image/postgress.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 6,
     src: "./image/react.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 3,
     src: "./image/mongoDB.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 8,
     src: "./image/tailwind.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 7,
     src: "./image/redux.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 7,
     src: "./image/redux.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
   {
     id: 8,
     src: "./image/tailwind.jpg",
     alt: "./front/front.jpg",
-    status: false,
   },
 ];
 function shuffleArray(imageArray) {
@@ -108,18 +92,22 @@ shuffleArray(imageArray);
 const loginDiv = document.createElement("div");
 // add class for div
 loginDiv.className = "loginDiv";
+const logo = document.createElement("img");
+logo.id = "logo";
+logo.src = "./image/logo.webp";
+loginDiv.append(logo);
 // create heading for gameName
-const gameName = document.createElement("h1");
+// const gameName = document.createElement("h1");
 // add class for gameName
-gameName.className = "gameName";
+// gameName.className = "gameName";
 // add inner text for signIn
-gameName.innerText = `MEMORY CARD GAME`;
+// gameName.innerText = `MEMORY CARD GAME`;
 // create heading for signIn
-const signIn = document.createElement("h2");
+// const signIn = document.createElement("h2");
 // add class for signIn
-signIn.className = "signIn";
+// signIn.className = "signIn";
 // add inner text for signIn
-signIn.innerText = ` SIGN IN `;
+// signIn.innerText = ` SIGN IN `;
 //create input filed for user name
 const inputUserName = document.createElement("input");
 // add class for input user name
@@ -128,42 +116,38 @@ inputUserName.id = "userName";
 // add placeholder for input user name
 inputUserName.placeholder = "Username";
 // create input field for password
-const inputPasswrod = document.createElement("input");
+//const inputPasswrod = document.createElement("input");
 // add placeholder for input password
-inputPasswrod.placeholder = "Password";
-inputPasswrod.type = "password";
+//inputPasswrod.placeholder = "Password";
+// inputPasswrod.type = "password";
 // add class name for input password
-inputPasswrod.className = "inputPasswrod";
+// inputPasswrod.className = "inputPasswrod";
 // create div for forget password and sign in
-const forgrtPassDiv = document.createElement("div");
-forgrtPassDiv.className = "forgrtPass";
+// const forgrtPassDiv = document.createElement("div");
+// forgrtPassDiv.className = "forgrtPass";
 // create heading forget password
-const forgetPassText = document.createElement("a");
-forgetPassText.className = "linkPassword";
-forgetPassText.innerText = "Forgot Password?";
-forgetPassText.href = "#";
+// const forgetPassText = document.createElement("a");
+// forgetPassText.className = "linkPassword";
+// forgetPassText.innerText = "Forgot Password?";
+// forgetPassText.href = "#";
 // create link for sign in
-const linkSignIn = document.createElement("a");
-linkSignIn.className = "linkSignUP";
-linkSignIn.innerText = "Sign Up";
-linkSignIn.href = "#";
+// const linkSignIn = document.createElement("a");
+// linkSignIn.className = "linkSignUP";
+// linkSignIn.innerText = "Sign Up";
+// linkSignIn.href = "#";
 
 // append link and forgot password inside div
-forgrtPassDiv.append(forgetPassText, linkSignIn);
+//forgrtPassDiv.append(forgetPassText, linkSignIn);
 // create button to start game
+const welcome_page = document.createElement("div");
+welcome_page.append(loginDiv);
+
 const buttonPalyNow = document.createElement("button");
 // add class name for button play now
 buttonPalyNow.className = "buttonPalyNow";
 // add inner text for button
-buttonPalyNow.innerText = "PALY NOW";
-loginDiv.append(
-  gameName,
-  signIn,
-  inputUserName,
-  inputPasswrod,
-  forgrtPassDiv,
-  buttonPalyNow
-);
+buttonPalyNow.innerText = "Play Now";
+loginDiv.append(inputUserName, buttonPalyNow);
 loginDiv.style.display = "flex";
 buttonPalyNow.addEventListener("click", () => {
   loginDiv.style.display = "none";
@@ -192,6 +176,7 @@ resultText.innerText = "GAME OVER";
 const replayButton = document.createElement("button");
 replayButton.id = "replayButton";
 replayButton.innerText = "REPLAY AGAIN";
+// replayButton.onclick= window.location.reload() ;
 resultScreen.style.display = "none";
 
 resultScreen.append(resultText, replayButton);
@@ -212,7 +197,7 @@ const timer = () => {
       seconds = 0;
       minutes++;
     }
-    if (minutes === 3) {
+    if (minutes === 2) {
       clearInterval(timeOver);
       resultScreen.style.display = "flex";
       layoutPage.style.display = "none";
@@ -256,23 +241,24 @@ const renderImage = () => {
       imageCard.src = x.src;
 
       if (count === 1) {
+        document.querySelector(`#img${index}`).className = "blockimg";
         FirstImageValue = e.target.value;
         firstIndex = index;
       }
 
-      console.log(e.target.status);
       if (count === 2) {
         imageCard.src = x.src;
 
         if (FirstImageValue === e.target.value) {
           trueSelect++;
-          console.log(e.target.status);
-          document.querySelector(`#img${index}`).status = true;
+          document.querySelector(`#img${index}`).className = "blockimg";
+          document.querySelector(`#img${firstIndex}`).className = "blockimg";
 
-          document.querySelector(`#img${firstIndex}`).status = true;
           new Audio("./sound/click.wav").play();
         } else {
           new Audio("./sound/wrong.mp3").play();
+          document.querySelector(`#img${index}`).className = "img";
+          document.querySelector(`#img${firstIndex}`).className = "img";
           setTimeout(() => {
             document.querySelector(`#img${index}`).src = x.alt;
             document.querySelector(`#img${firstIndex}`).src = x.alt;
@@ -287,17 +273,14 @@ const renderImage = () => {
     document.querySelectorAll(".img").forEach((img) => {
       img.src = "./front/front.jpg";
     });
-  }, "5000");
+  }, "4000");
 };
-
-replayButton.addEventListener("click", () => {
-  layoutPage.style.display = "flex";
-  resultScreen.style.display = "none";
-  console.log("ok");
-  renderImage();
-});
+const refresh = () => {
+  location.reload();
+};
+replayButton.addEventListener("click", refresh);
 buttonPalyNow.addEventListener("click", (e) => {
-  if (inputUserName.value && inputPasswrod.value) {
+  if (inputUserName.value) {
     renderImage();
 
     innerDivCounter.innerText = `Player Name : ${inputUserName.value}`;
@@ -309,8 +292,6 @@ buttonPalyNow.addEventListener("click", (e) => {
     inputUserName.id = "userNamef";
     inputUserName.placeholder = "please fill the input";
     loginDiv.style.display = "flex";
-    inputPasswrod.id = "passwordPlaceHolder";
-    inputPasswrod.placeholder = "please fill the input";
   }
 });
 
