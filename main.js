@@ -173,7 +173,7 @@ resultText.innerText = "GAME OVER";
 // create button replay again
 const replayButton = document.createElement("button");
 replayButton.id = "replayButton";
-replayButton.innerText = "REPLAY AGAIN";
+replayButton.innerText = "PLAY AGAIN";
 // replayButton.onclick= window.location.reload() ;
 resultScreen.style.display = "none";
 
@@ -181,21 +181,21 @@ resultScreen.append(resultText, replayButton);
 document.body.append(resultScreen);
 //!----------------------------create counter-----------------------
 
-let minutes = 0;
-let seconds = 0;
+let minutes = 2;
+let seconds = 60;
 const counter = document.createElement("h3");
 counter.id = "counter";
 
 const timer = () => {
   let timeOver = setInterval(() => {
-    seconds++;
+    seconds--;
 
     counter.innerText = "0" + minutes + "m" + " : " + seconds + "s";
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
+    if (seconds === 0) {
+      seconds = 60;
+      minutes--;
     }
-    if (minutes === 2) {
+    if (minutes === -1) {
       clearInterval(timeOver);
       resultScreen.style.display = "flex";
       layoutPage.style.display = "none";
